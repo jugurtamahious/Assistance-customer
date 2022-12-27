@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/support-customer-dgtp-main (1)" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/support-customer-dgtp-main (1)/support-customer-dgtp-main" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/support-customer-dgtp-main (1)/support-customer-dgtp-main/src/Support customer - kolas" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/support-customer-dgtp-main (1)/support-customer-dgtp-main/src/Support customer - kolas/support-customer-dgtp-main (1)/support-customer-dgtp-main" vcs="Git" />
   </component>
 </project>
