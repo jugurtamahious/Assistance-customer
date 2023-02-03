@@ -2,6 +2,8 @@ $form = document.querySelector(".form");
 $button = document.querySelector(".btn");
 $modifié = document.querySelectorAll(".toto");
 
+
+
 $button.addEventListener("click", function () {
   $form.classList.toggle("is_active");
   if ($button.innerHTML === "cancel") {
@@ -22,5 +24,6 @@ for (var i = 0; i < $modifié.length; i++) {
     }
   });
 }
+
 
 

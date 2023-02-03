@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8976:80"
-      - "8977:443"
+      - "8970:80"
+      - "8971:443"
     restart: unless-stopped
     volumes:
       - ./src:/var/www/html

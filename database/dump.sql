@@ -5,128 +5,48 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
-CREATE TABLE `3f` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `eventdate` date NOT NULL,
-  `travaux` varchar(255) DEFAULT NULL,
-  `filesname` varchar(255) DEFAULT NULL,
-  `size` int(11) DEFAULT NULL,
-  `downloads` int(11) DEFAULT NULL,
-  `responsedate` date DEFAULT NULL,
-  `demande` varchar(255) DEFAULT NULL,
-  `timespent` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `BlablaMat` (
+                             `id` int(11) NOT NULL AUTO_INCREMENT,
+                             `user_id` int(11) NOT NULL,
+                             `eventdate` date NOT NULL,
+                             `logiciels` varchar(255) DEFAULT NULL,
+                             `travaux` varchar(255) DEFAULT NULL,
+                             `filesname` varchar(255) DEFAULT NULL,
+                             `size` int(11) DEFAULT NULL,
+                             `filesnamedeux` varchar(255) DEFAULT NULL,
+                             `sizedeux` int(11) DEFAULT NULL,
+                             `filesnametrois` varchar(255) DEFAULT NULL,
+                             `sizetrois` int(11) DEFAULT NULL,
+                             `filesnamequatre` varchar(255) DEFAULT NULL,
+                             `sizequatre` int(11) DEFAULT NULL,
+                             `filesnamecinq` varchar(255) DEFAULT NULL,
+                             `sizecinq` int(11) DEFAULT NULL,
+                             `filesnamesix` varchar(255) DEFAULT NULL,
+                             `sizesix` int(11) DEFAULT NULL,
+                             `filesnamesept` varchar(255) DEFAULT NULL,
+                             `sizesept` int(11) DEFAULT NULL,
+                             `filesnamehuit` varchar(255) DEFAULT NULL,
+                             `sizehuit` int(11) DEFAULT NULL,
+                             `filesnameneuf` varchar(255) DEFAULT NULL,
+                             `sizeneuf` int(11) DEFAULT NULL,
+                             `filesnamedix` varchar(255) DEFAULT NULL,
+                             `sizedix` int(11) DEFAULT NULL,
+                             `responsedate` date DEFAULT NULL,
+                             `demande` varchar(255) DEFAULT NULL,
+                             `timespent` varchar(255) DEFAULT NULL,
+                             `response` varchar(255) DEFAULT NULL,
+                             `likes` int(11) DEFAULT NULL,
+                             `dislikes` int(11) DEFAULT NULL,
+                             `active` int(11) DEFAULT 0,
+                             PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-CREATE TABLE `challenges` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `eventdate` date NOT NULL,
-  `travaux` varchar(255) DEFAULT NULL,
-  `filesname` varchar(255) DEFAULT NULL,
-  `size` int(11) DEFAULT NULL,
-  `downloades` int(11) DEFAULT NULL,
-  `responsedate` date DEFAULT NULL,
-  `demande` varchar(255) DEFAULT NULL,
-  `response` varchar(255) NOT NULL,
-  `timespent` varchar(255) NOT NULL,
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `challenges_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-CREATE TABLE `diagnostic` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `eventdate` date NOT NULL,
-  `travaux` varchar(255) DEFAULT NULL,
-  `filesname` varchar(255) DEFAULT NULL,
-  `size` int(11) NOT NULL,
-  `downloades` int(11) NOT NULL,
-  `responsedate` date NOT NULL,
-  `demande` varchar(255) DEFAULT NULL,
-  `response` varchar(255) DEFAULT NULL,
-  `timespent` varchar(255) DEFAULT NULL,
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `diagnostic_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-CREATE TABLE `geobloc` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `eventdate` date NOT NULL,
-  `travaux` varchar(255) DEFAULT NULL,
-  `filesname` varchar(255) DEFAULT NULL,
-  `size` int(11) DEFAULT NULL,
-  `downloads` int(11) DEFAULT NULL,
-  `responsedate` date DEFAULT NULL,
-  `demande` varchar(255) DEFAULT NULL,
-  `response` varchar(255) DEFAULT NULL,
-  `timespent` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
-
-CREATE TABLE `innovidees` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `eventdate` date NOT NULL,
-  `travaux` varchar(255) DEFAULT NULL,
-  `filesname` varchar(255) DEFAULT NULL,
-  `size` int(11) DEFAULT NULL,
-  `downloads` int(11) DEFAULT NULL,
-  `responsedate` date DEFAULT NULL,
-  `demande` varchar(255) DEFAULT NULL,
-  `response` varchar(255) DEFAULT NULL,
-  `timespent` varchar(255) DEFAULT NULL,
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `innovidees_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-CREATE TABLE `interv` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `eventdate` date NOT NULL,
-  `travaux` varchar(255) DEFAULT NULL,
-  `filesname` varchar(255) DEFAULT NULL,
-  `size` int(11) DEFAULT NULL,
-  `downloads` int(11) DEFAULT NULL,
-  `responsedate` date DEFAULT NULL,
-  `demande` varchar(255) DEFAULT NULL,
-  `response` varchar(255) DEFAULT NULL,
-  `timespent` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-CREATE TABLE `post` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `eventdate` date NOT NULL,
-  `travaux` varchar(255) DEFAULT NULL,
-  `filesname` varchar(255) DEFAULT NULL,
-  `size` int(11) DEFAULT NULL,
-  `downloads` int(11) DEFAULT NULL,
-  `responsedate` date DEFAULT NULL,
-  `demande` varchar(255) DEFAULT NULL,
-  `response` varchar(255) DEFAULT NULL,
-  `timespent` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) DEFAULT NULL,
-  `password` varchar(256) DEFAULT NULL,
-  `name_encode` varchar(50) DEFAULT NULL,
-  `usertype` varchar(1) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`username`)
+                        `id` int(11) NOT NULL AUTO_INCREMENT,
+                        `username` varchar(100) DEFAULT NULL,
+                        `password` varchar(256) DEFAULT NULL,
+                        `name_encode` varchar(50) DEFAULT NULL,
+                        `usertype` varchar(1) DEFAULT NULL,
+                        PRIMARY KEY (`id`),
+                        UNIQUE KEY `name` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+

@@ -1,31 +1,95 @@
 <?php
 
 function userForm(){
- echo '
+ ?>
 <div class="container">
   <form  method="post" class="form is_active box" enctype="multipart/form-data">
     <div class="field">
-      <label class="label">travaux réalisés</label>
+      <label class="label">Titre de la demande</label>
       <div class="control">
-        <input class="input" type="text" placeholder="Text input" name="travaux">
+        <input class="input" type="text" placeholder="Titre..." name="travaux">
       </div>
     </div>
     <div class="field">
       <label class="label">Message</label>
       <div class="control">
-        <textarea class="textarea" placeholder="Textarea" name="demande"></textarea>
+        <textarea class="textarea" placeholder="Description de votre demansde..." name="demande"></textarea>
       </div>
     </div>
     <div class="field">
-      <label class="label">Date</label>
       <div class="control">
-        <input type="date" name="eventdate" class="form-control">
+        <input type="hidden" name="eventdate" class="form-control" value="<?php
+        $date = date("Y-m-d");
+        echo
+        "{$date}";
+        ?>">
       </div>
-    </div>
+      <div class="field">
+        <div class="control">
+          <input type="hidden" name="logiciels" class="form-control" value="<?php
+          $log=$_GET["logiciel"];
+          echo
+          "{$log}";
+          ?>">
+        </div>
+     </div>
     <div class="field">
       <label class="label">Fichier</label>
       <div class="control">
       <input class="input is-primary" type="file" name="myfile">
+      </div>
+    </div>
+     <div class="field">
+      <label class="label">Fichier</label>
+      <div class="control">
+      <input class="input is-primary" type="file" name="myfiledeux">
+      </div>
+    </div>
+     <div class="field">
+      <label class="label">Fichier</label>
+      <div class="control">
+      <input class="input is-primary" type="file" name="myfiletrois">
+      </div>
+    </div> <div class="field">
+      <label class="label">Fichier</label>
+      <div class="control">
+      <input class="input is-primary" type="file" name="myfilequatre">
+      </div>
+    </div>
+     <div class="field">
+      <label class="label">Fichier</label>
+      <div class="control">
+      <input class="input is-primary" type="file" name="myfilecinq">
+      </div>
+    </div>
+     <div class="field">
+      <label class="label">Fichier</label>
+      <div class="control">
+      <input class="input is-primary" type="file" name="myfilesix">
+      </div>
+    </div>
+     <div class="field">
+      <label class="label">Fichier</label>
+      <div class="control">
+      <input class="input is-primary" type="file" name="myfilesept">
+      </div>
+    </div>
+     <div class="field">
+      <label class="label">Fichier</label>
+      <div class="control">
+      <input class="input is-primary" type="file" name="myfilehuit">
+      </div>
+    </div>
+     <div class="field">
+      <label class="label">Fichier</label>
+      <div class="control">
+      <input class="input is-primary" type="file" name="myfileneuf">
+      </div>
+    </div>
+     <div class="field">
+      <label class="label">Fichier</label>
+      <div class="control">
+      <input class="input is-primary" type="file" name="myfiledix">
       </div>
     </div>
     <div class="btns_container">
@@ -37,7 +101,8 @@ function userForm(){
       </div>
     </div>
   </form>
-</div>';
+</div>
+<?php
 }
 
 /*  admin forms */
@@ -45,13 +110,13 @@ function userForm(){
 function blablamatadminForm(){
 
     $id = $_GET['responseid'];
-    $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
-    $blablamat = $pdo->prepare("SELECT * FROM post  WHERE {$_GET['responseid']}");
+   $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
+    $blablamat = $pdo->prepare("SELECT * FROM BlablaMat  WHERE {$_GET['responseid']}");
     $blablamat->execute();
     $blablamatposts = $blablamat->fetchAll(PDO::FETCH_ASSOC);
 
     ?>
-   
+
    <div class="container_user">
     <form method="post" class="form box">
     <div class="field">
@@ -60,7 +125,7 @@ function blablamatadminForm(){
         <input class="input" type="text" placeholder="Text input" name="timespent"<?php  foreach($blablamatposts as $blablamatpost) {  if($id == $blablamatpost['id'] ){ echo ' value="'. $blablamatpost['timespent'] .'"';}}?>>
       </div>
     </div>
-    
+
     <div class="field">
       <label class="label">réponse</label>
       <div class="control">
@@ -68,11 +133,13 @@ function blablamatadminForm(){
       </div>
     </div>
     <div class="field">
-      <label class="label">Date</label>
       <div class="control">
-        <input type="date" name="responsedate" class="form-control">
+        <input type="hidden" name="responsedate" class="form-control" value="<?php
+        $date = date("Y-m-d");
+        echo
+        "{$date}";
+        ?>">
       </div>
-    </div>
     <div class="field is-grouped">
       <div class="control">
         <button class="button is-link" name="blablamatcreer">Submit</button>
@@ -86,636 +153,81 @@ function blablamatadminForm(){
    <?php
 }
 
-function geoBLOadminForm(){
-    $id = $_GET['geoBLOCresponseid'];
-    $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
-    $geobloc = $pdo->prepare("SELECT * FROM geobloc  WHERE {$_GET['geoBLOCresponseid']}");
-    $geobloc->execute();
-    $geoblocposts = $geobloc->fetchAll(PDO::FETCH_ASSOC);
-?>
-  
-  <div class="container_user">
-   <form method="post" class="form box">
-   <div class="field">
-     <label class="label">temps passé</label>
-     <div class="control">
-       <input class="input" type="text" placeholder="Text input" name="timespent"<?php  foreach($geoblocposts as $geoblocpost) {  if($id == $geoblocpost['id'] ){ echo ' value="'. $geoblocpost['timespent'] .'"';}}?>>
-     </div>
-   </div>
-   
-   <div class="field">
-     <label class="label">réponse</label>
-     <div class="control">
-       <textarea class="textarea" placeholder="Textarea" name="response"><?php foreach($geoblocposts as $geoblocpost) { if($id == $geoblocpost['id'] ){ echo '' . $geoblocpost['response'].'';}}?></textarea>
-     </div>
-   </div>
-   <div class="field">
-     <label class="label">Date</label>
-     <div class="control">
-       <input type="date" name="responsedate" class="form-control">
-     </div>
-   </div>
-   <div class="field is-grouped">
-     <div class="control">
-       <button class="button is-link" name="geoBLOCcreer">Submit</button>
-     </div>
-     <div class="control">
-       <button class="button is-link is-light" >Cancel</button>
-     </div>
-   </div>
-   </form>
-  </div>
-  <?php
-}
-
-function intervadminForm(){
-    $id = $_GET['intervresponseid'];
-    $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
-    $interv = $pdo->prepare("SELECT * FROM interv  WHERE {$_GET['intervresponseid']}");
-    $interv->execute();
-    $intervposts = $interv->fetchAll(PDO::FETCH_ASSOC);
-    ?>
-  <div class="container_user">
-   <form method="post" class="form box">
-   <div class="field">
-     <label class="label">temps passé</label>
-     <div class="control">
-       <input class="input" type="text" placeholder="Text input" name="timespent"<?php  foreach($intervposts as $intervpost) {  if($id == $intervpost['id'] ){ echo ' value="'. $intervpost['timespent'] .'"';}}?>>
-     </div>
-   </div>
-   
-   <div class="field">
-     <label class="label">réponse</label>
-     <div class="control">
-       <textarea class="textarea" placeholder="Textarea" name="response"><?php foreach($intervposts as $intervpost) { if($id == $intervpost['id'] ){ echo '' . $intervpost['response'].'';}}?></textarea>
-     </div>
-   </div>
-   <div class="field">
-     <label class="label">Date</label>
-     <div class="control">
-       <input type="date" name="responsedate" class="form-control">
-     </div>
-   </div>
-   <div class="field is-grouped">
-     <div class="control">
-       <button class="button is-link" name="intervcreer">Submit</button>
-     </div>
-     <div class="control">
-       <button class="button is-link is-light" >Cancel</button>
-     </div>
-   </div>
-   </form>
-  </div>
-  <?php
-}
-
-function fffadminForm()
-{
-    $id = $_GET['3fresponseid'];
-
-    $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
-    $query = $pdo->prepare("SELECT * FROM 3f  WHERE {$_GET['3fresponseid']}");
-    $query->execute();
-    $posts = $query->fetchAll(PDO::FETCH_ASSOC);
-
-    ?>
-
-  <div class="container_user">
-   <form method="post" class="form box">
-   <div class="field">
-     <label class="label">temps passé</label>
-     <div class="control">
-       <input class="input" type="text" placeholder="Text input" name="timespent"<?php  foreach($posts as $post) {  if($id == $post['id'] ){ echo ' value="'. $post['timespent'] .'"';}}?>">
-     </div>
-   </div>
-   <div class="field">
-     <label class="label">réponse</label>
-     <div class="control">
-       <textarea class="textarea" placeholder="Textarea" name="response"><?php foreach($posts as $post) { if($id == $post['id'] ){ echo '' . $post['response'].'';}}?></textarea>
-     </div>
-   </div>
-   <div class="field">
-     <label class="label">Date</label>
-     <div class="control">
-       <input type="date" name="responsedate" class="form-control">
-     </div>
-   </div>
-   <div class="field is-grouped">
-     <div class="control">
-       <button class="button is-link" name="3fcreer">Submit</button>
-     </div>
-     <div class="control">
-       <button class="button is-link is-light" >Cancel</button>
-     </div>
-   </div>
-   </form>
-  </div>
-<?php
-
-}
-
-
-function innovideesadminForm(){
-    $id = $_GET['innovideesresponseid'];
-    $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
-    $innovidees = $pdo->prepare("SELECT * FROM innovidees  WHERE {$_GET['innovideesresponseid']}");
-    $innovidees->execute();
-    $innovideesposts = $innovidees->fetchAll(PDO::FETCH_ASSOC);
-    ?>
-  
-  <div class="container_user>
-   <form method="post" class="form box">
-   <div class="field">
-     <label class="label">temps passé</label>
-     <div class="control">
-       <input class="input" type="text" placeholder="Text input" name="timespent"<?php  foreach($innovideesposts as $innovideespost) {  if($id == $innovideespost['id'] ){ echo ' value="'. $innovideespost['timespent'] .'"';}}?>>
-     </div>
-   </div>
-   
-   <div class="field">
-     <label class="label">réponse</label>
-     <div class="control">
-       <textarea class="textarea" placeholder="Textarea" name="response"><?php foreach($innovideesposts as $innovideespost) { if($id == $innovideespost['id'] ){ echo '' . $innovideespost['response'].'';}}?></textarea>
-     </div>
-   </div>
-   <div class="field">
-     <label class="label">Date</label>
-     <div class="control">
-       <input type="date" name="responsedate" class="form-control">
-     </div>
-   </div>
-   <div class="field is-grouped">
-     <div class="control">
-       <button class="button is-link" name="innovideescreer">Submit</button>
-     </div>
-     <div class="control">
-       <button class="button is-link is-light" >Cancel</button>
-     </div>
-   </div>
-   </form>
-  </div>
-  <?php
-}
-
-    function challengesadminForm(){
-        $id = $_GET['challengesresponseid'];
-        $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
-        $challenges = $pdo->prepare("SELECT * FROM challenges  WHERE {$_GET['challengesresponseid']}");
-        $challenges->execute();
-        $challengesposts = $challenges->fetchAll(PDO::FETCH_ASSOC);
-        ?>
-  <div class="container_user">
-   <form method="post" class="form box">
-   <div class="field">
-     <label class="label">temps passé</label>
-     <div class="control">
-       <input class="input" type="text" placeholder="Text input" name="timespent"<?php  foreach($challengesposts as $challengespost) {  if($id == $challengespost['id'] ){ echo ' value="'. $challengespost['timespent'] .'"';}}?>>
-     </div>
-   </div>
-   
-   <div class="field">
-     <label class="label">réponse</label>
-     <div class="control">
-       <textarea class="textarea" placeholder="Textarea" name="response"><?php foreach($challengesposts as $challengespost) { if($id == $challengespost['id'] ){ echo '' . $challengespost['response'].'';}}?></textarea>
-     </div>
-   </div>
-   <div class="field">
-     <label class="label">Date</label>
-     <div class="control">
-       <input type="date" name="responsedate" class="form-control">
-     </div>
-   </div>
-   <div class="field is-grouped">
-     <div class="control">
-       <button class="button is-link" name="challengescreer">Submit</button>
-     </div>
-     <div class="control">
-       <button class="button is-link is-light" >Cancel</button>
-     </div>
-   </div>
-   </form>
-  </div>
-        <?php
-}
-
-    function diagnosticadminForm(){
-        $id = $_GET['diagnosticresponseid'];
-        $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
-        $diagnostic = $pdo->prepare("SELECT * FROM diagnostic WHERE {$_GET['diagnosticresponseid']}");
-        $diagnostic->execute();
-        $diagnosticposts = $diagnostic->fetchAll(PDO::FETCH_ASSOC);
-        ?>
-  <div class="container_user">
-   <form method="post" class="form box">
-   <div class="field">
-     <label class="label">temps passé</label>
-     <div class="control">
-       <input class="input" type="text" placeholder="Text input" name="timespent"<?php  foreach($diagnosticposts as $diagnosticpost) {  if($id == $diagnosticpost['id'] ){ echo ' value="'. $diagnosticpost['timespent'] .'"';}}?>>
-     </div>
-   </div>
-   
-   <div class="field">
-     <label class="label">réponse</label>
-     <div class="control">
-       <textarea class="textarea" placeholder="Textarea" name="response"><?php foreach($diagnosticposts as $diagnosticpost) { if($id == $diagnosticpost['id'] ){ echo '' . $diagnosticpost['response'].'';}}?></textarea>
-     </div>
-   </div>
-   <div class="field">
-     <label class="label">Date</label>
-     <div class="control">
-       <input type="date" name="responsedate" class="form-control">
-     </div>
-   </div>
-   <div class="field is-grouped">
-     <div class="control">
-       <button class="button is-link" name="diagnosticcreer">Submit</button>
-     </div>
-     <div class="control">
-       <button class="button is-link is-light" >Cancel</button>
-     </div>
-   </div>
-   </form>
-  </div>
-  <?php
-}
 
     /*  filter dates */
-       
+
 function filterDates(){
+?>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DIGI-TP</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+  <div class="container_page">
+  <div class="left">
+      <div class="login">Filtrer</div>
+      <div class="eula">Retrouvez tous vos tickets en recherchant par mois</div>
+    </div>
+    <div class="right">
+      <svg viewBox="0 0 320 300">
+        <defs>
+          <linearGradient
+                          inkscape:collect="always"
+                          id="linearGradient"
+                          x1="13"
+                          y1="193.49992"
+                          x2="307"
+                          y2="193.49992"
+                          gradientUnits="userSpaceOnUse">
+            <stop
+                  style="stop-color:#ff00ff;"
+                  offset="0"
+                  id="stop876" />
+            <stop
+                  style="stop-color:#ff0000;"
+                  offset="1"
+                  id="stop878" />
+          </linearGradient>
+      <div class="form_login">
+      <form method="post">
+          <div class="select is-primary is-medium iq-rounded ">
+              <select name="date">
+                <option value="">Selectionez une année</option>
+                  <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+              </select>
+         </div>
+       <h2>Selectionez un mois</h2>
+       <button class="button-15" type="submit" id="submit" name="Janvier">janvier</button>
+        <button class="button-15" type="submit" id="submit" name="Février">Février</button>
+         <button class="button-15" type="submit" id="submit" name="Mars">Mars</button>
+          <button class="button-15" type="submit" id="submit" name="Avril">Avril</button>
+           <button class="button-15" type="submit" id="submit" name="Mai">Mai</button>
+            <button class="button-15" type="submit" id="submit" name="Juin">Juin</button>
+             <button class="button-15" type="submit" id="submit" name="Juillet">juillet</button>
+              <button class="button-15" type="submit" id="submit" name="Aout">Aout</button>
+               <button class="button-15" type="submit" id="submit" name="Septembre">Septembre</button>
+                <button class="button-15" type="submit" id="submit" name="Octobre">Octobre</button>
+                 <button  class="button-15" type="submit" id="submit" name="Novembre">Novembre</button>
+                  <button class="button-15" type="submit" id="submit" name="Décembre">Décembre </button>
+       </form>
+      </div>
+    </div>
+  </div>
+  <script src="index.js"></script>
+<?php
+}
+// Les card de l'acceuil
 
-  echo'
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DIGI-TP</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-  <div class="container_page">
-  <div class="left">
-      <div class="login">Filtrer</div>
-      <div class="eula">Retrouvez tous vos tickets en recherchant par date</div>
-    </div>
-    <div class="right">
-      <svg viewBox="0 0 320 300">
-        <defs>
-          <linearGradient
-                          inkscape:collect="always"
-                          id="linearGradient"
-                          x1="13"
-                          y1="193.49992"
-                          x2="307"
-                          y2="193.49992"
-                          gradientUnits="userSpaceOnUse">
-            <stop
-                  style="stop-color:#ff00ff;"
-                  offset="0"
-                  id="stop876" />
-            <stop
-                  style="stop-color:#ff0000;"
-                  offset="1"
-                  id="stop878" />
-          </linearGradient>
-        </defs>
-        <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
-      </svg>
-      <div class="form_login">
-        <form method="post">
-        <label for="text">Nom</label>
-        <input type="date" name="fromdate"id="email">
-        <label for="password">Mot de passe</label>
-        <input type="date" name="todate" id="password">
-        <input type="submit" id="submit" value="Connexion">
-        </form>
-      </div>
-    </div>
-  </div>
-';
-}
-function geoBLOCfilterDates(){
 
-  echo'
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DIGI-TP</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-  <div class="container_page">
-  <div class="left">
-      <div class="login">Filtrer</div>
-      <div class="eula">Retrouvez tous vos tickets en recherchant par date</div>
-    </div>
-    <div class="right">
-      <svg viewBox="0 0 320 300">
-        <defs>
-          <linearGradient
-                          inkscape:collect="always"
-                          id="linearGradient"
-                          x1="13"
-                          y1="193.49992"
-                          x2="307"
-                          y2="193.49992"
-                          gradientUnits="userSpaceOnUse">
-            <stop
-                  style="stop-color:#ff00ff;"
-                  offset="0"
-                  id="stop876" />
-            <stop
-                  style="stop-color:#ff0000;"
-                  offset="1"
-                  id="stop878" />
-          </linearGradient>
-        </defs>
-        <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
-      </svg>
-      <div class="form_login">
-        <form method="post">
-        <label for="text">Nom</label>
-        <input type="date" name="geoBLOCfromdate"id="email">
-        <label for="password">Mot de passe</label>
-        <input type="date" name="geoBLOCtodate" id="password">
-        <input type="submit" id="submit" value="Connexion">
-        </form>
-      </div>
-    </div>
-  </div>
-  ';
-}
-function intervfilterDates(){
-  echo'
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DIGI-TP</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-  <div class="container_page">
-  <div class="left">
-      <div class="login">Filtrer</div>
-      <div class="eula">Retrouvez tous vos tickets en recherchant par date</div>
-    </div>
-    <div class="right">
-      <svg viewBox="0 0 320 300">
-        <defs>
-          <linearGradient
-                          inkscape:collect="always"
-                          id="linearGradient"
-                          x1="13"
-                          y1="193.49992"
-                          x2="307"
-                          y2="193.49992"
-                          gradientUnits="userSpaceOnUse">
-            <stop
-                  style="stop-color:#ff00ff;"
-                  offset="0"
-                  id="stop876" />
-            <stop
-                  style="stop-color:#ff0000;"
-                  offset="1"
-                  id="stop878" />
-          </linearGradient>
-        </defs>
-        <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
-      </svg>
-      <div class="form_login">
-        <form method="post">
-        <label for="text">Nom</label>
-        <input type="date" name="intervfromdate"id="email">
-        <label for="password">Mot de passe</label>
-        <input type="date" name="intervtodate" id="password">
-        <input type="submit" id="submit" value="Connexion">
-        </form>
-      </div>
-    </div>
-  </div>
-  ';
-}
-function fffilterDates(){
-  echo'
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DIGI-TP</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-  <div class="container_page">
-  <div class="left">
-      <div class="login">Filtrer</div>
-      <div class="eula">Retrouvez tous vos tickets en recherchant par date</div>
-    </div>
-    <div class="right">
-      <svg viewBox="0 0 320 300">
-        <defs>
-          <linearGradient
-                          inkscape:collect="always"
-                          id="linearGradient"
-                          x1="13"
-                          y1="193.49992"
-                          x2="307"
-                          y2="193.49992"
-                          gradientUnits="userSpaceOnUse">
-            <stop
-                  style="stop-color:#ff00ff;"
-                  offset="0"
-                  id="stop876" />
-            <stop
-                  style="stop-color:#ff0000;"
-                  offset="1"
-                  id="stop878" />
-          </linearGradient>
-        </defs>
-        <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
-      </svg>
-      <div class="form_login">
-        <form method="post">
-        <label for="text">Nom</label>
-        <input type="date" name="3ffromdate"id="email">
-        <label for="password">Mot de passe</label>
-        <input type="date" name="3ftodate" id="password">
-        <input type="submit" id="submit" value="Connexion">
-        </form>
-      </div>
-    </div>
-  </div>
-  ';
-}
-function innovideesfilterDates(){
-  echo'
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DIGI-TP</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-  <div class="container_page">
-  <div class="left">
-      <div class="login">Filtrer</div>
-      <div class="eula">Retrouvez tous vos tickets en recherchant par date</div>
-    </div>
-    <div class="right">
-      <svg viewBox="0 0 320 300">
-        <defs>
-          <linearGradient
-                          inkscape:collect="always"
-                          id="linearGradient"
-                          x1="13"
-                          y1="193.49992"
-                          x2="307"
-                          y2="193.49992"
-                          gradientUnits="userSpaceOnUse">
-            <stop
-                  style="stop-color:#ff00ff;"
-                  offset="0"
-                  id="stop876" />
-            <stop
-                  style="stop-color:#ff0000;"
-                  offset="1"
-                  id="stop878" />
-          </linearGradient>
-        </defs>
-        <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
-      </svg>
-      <div class="form_login">
-        <form method="post">
-        <label for="text">Nom</label>
-        <input type="date" name="innovideesfromdate"id="email">
-        <label for="password">Mot de passe</label>
-        <input type="date" name="innovideestodate" id="password">
-        <input type="submit" id="submit" value="Connexion">
-        </form>
-      </div>
-    </div>
-  </div>
-  ';
-}
-function challengesfilterDates(){
-  echo'
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DIGI-TP</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-  <div class="container_page">
-  <div class="left">
-      <div class="login">Filtrer</div>
-      <div class="eula">Retrouvez tous vos tickets en recherchant par date</div>
-    </div>
-    <div class="right">
-      <svg viewBox="0 0 320 300">
-        <defs>
-          <linearGradient
-                          inkscape:collect="always"
-                          id="linearGradient"
-                          x1="13"
-                          y1="193.49992"
-                          x2="307"
-                          y2="193.49992"
-                          gradientUnits="userSpaceOnUse">
-            <stop
-                  style="stop-color:#ff00ff;"
-                  offset="0"
-                  id="stop876" />
-            <stop
-                  style="stop-color:#ff0000;"
-                  offset="1"
-                  id="stop878" />
-          </linearGradient>
-        </defs>
-        <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
-      </svg>
-      <div class="form_login">
-        <form method="post">
-        <label for="text">Nom</label>
-        <input type="date" name="challengesfromdate"id="email">
-        <label for="password">Mot de passe</label>
-        <input type="date" name="challengestodate" id="password">
-        <input type="submit" id="submit" value="Connexion">
-        </form>
-      </div>
-    </div>
-  </div>
-  ';
-}
-function diagnosticfilterDates(){
-  echo'
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DIGI-TP</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-  <div class="container_page">
-  <div class="left">
-      <div class="login">Filtrer</div>
-      <div class="eula">Retrouvez tous vos tickets en recherchant par date</div>
-    </div>
-    <div class="right">
-      <svg viewBox="0 0 320 300">
-        <defs>
-          <linearGradient
-                          inkscape:collect="always"
-                          id="linearGradient"
-                          x1="13"
-                          y1="193.49992"
-                          x2="307"
-                          y2="193.49992"
-                          gradientUnits="userSpaceOnUse">
-            <stop
-                  style="stop-color:#ff00ff;"
-                  offset="0"
-                  id="stop876" />
-            <stop
-                  style="stop-color:#ff0000;"
-                  offset="1"
-                  id="stop878" />
-          </linearGradient>
-        </defs>
-        <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
-      </svg>
-      <div class="form_login">
-        <form method="post">
-        <label for="text">Nom</label>
-        <input type="date" name="diagnosticfromdate"id="email">
-        <label for="password">Mot de passe</label>
-        <input type="date" name="diagnostictodate" id="password">
-        <input type="submit" id="submit" value="Connexion">
-        </form>
-      </div>
-    </div>
-  </div>
-  ';
-}
 function card (){
-    $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
+   $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
     $query = $pdo->prepare("SELECT * FROM user WHERE id=:id");
     $query->execute(
         [
@@ -725,28 +237,26 @@ function card (){
 
     $privilegecy = $query->fetch(PDO::FETCH_ASSOC);
     ?>
-      <div class="tous_logc">
-        <article class="message is-primary">
-        <div class="message-header">
-        <h1 class="title is-1">Nos Logiciels</h1>
-        </div>
-         </article>
+      <div class="tous_logc" id="tous_logc">
         <div class="project-card">
             <?php
-            $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
-            $blablamat = $pdo->prepare("SELECT * FROM post WHERE active = 0"  );
+
+ // afficher les notification   active=0 veut dire message auquel l'admin n'a pas répondu (quand il réponde on met active à 1)
+
+
+            $blablamat = $pdo->prepare("SELECT * FROM BlablaMat WHERE active = 0 AND logiciels='BlablaMat'");
             $blablamat->execute();
             $countmat = $blablamat->rowCount(); ?>
         <div class="project-image">
-        <img class="img_log" src="BLABLAMT-LOGO-VECT.png" alt="Placeholder image">
+        <img class="img_log" src="/pictures/BLABLAMT-LOGO-VECT.png" alt="Placeholder image">
         </div>
         <div class="project-info">
             <strong class="project-title">
             <div class="wrap">
-            <a href="BlablaMat.php">
+            <a class="a_filtrer" href="BlablaMat.php?logiciel=BlablaMat">
                 <?php
                 if(isset ($privilegecy['usertype'])){
-                    if( $countmat === 0){
+                        if( $countmat === 0){
                         echo' <button type="button" class="icon-button" class="demande">
                                 <span class="material-icons">notifications</span>
                                 <span>'.$countmat.'</span>
@@ -758,29 +268,26 @@ function card (){
                               </button>';
                     }
                 }elseif(! isset( $privilegecy['usertype'])){
-
-
                     echo'<button type="submit" class="button" name="demande">+ Demande </button>';
                 }?>
             </a>
           </div>
-              
+
             </strong>
         </div>
       </div>
 
       <div class="project-card">
           <?php
-          $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
-          $geoBloc = $pdo->prepare("SELECT * FROM geobloc WHERE active = 0"  );
+          $geoBloc = $pdo->prepare("SELECT * FROM BlablaMat WHERE active = 0 AND logiciels='geobloc'");
           $geoBloc->execute();
           $countBLOC= $geoBloc->rowCount(); ?>
         <div class="project-image">
-        <img class="img_log" src="unnamed (1).png"alt="Placeholder image">
+        <img class="img_log" src="/pictures/unnamed (1).png"alt="Placeholder image">
         </div>
         <div class="project-info">
             <strong class="project-title">
-            <a href="geoBLOC.php">
+            <a class="a_filtrer" href="BlablaMat.php?logiciel=geobloc">
                 <?php
                 if(isset ($privilegecy['usertype'])){
                     if( $countBLOC === 0){
@@ -800,7 +307,7 @@ function card (){
                     echo'<button type="submit" class="button" name="demande">+ Demande </button>';
                 }?>
             </a>
-              
+
             </strong>
         </div>
       </div>
@@ -808,16 +315,15 @@ function card (){
 
       <div class="project-card">
           <?php
-          $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
-          $interv = $pdo->prepare("SELECT * FROM interv WHERE active = 0"  );
+          $interv = $pdo->prepare("SELECT * FROM BlablaMat WHERE active = 0 AND logiciels='interv'"  );
           $interv->execute();
           $countinterv=$interv->rowCount(); ?>
         <div class="project-image">
-        <img class="img_log" src="unnamed (2).png"alt="Placeholder image">
+        <img class="img_log" src="/pictures/unnamed (2).png"alt="Placeholder image">
         </div>
         <div class="project-info">
             <strong class="project-title">
-            <a href="interv.php">
+            <a class="a_filtrer"  href="BlablaMat.php?logiciel=interv">
                 <?php
                 if(isset ($privilegecy['usertype'])){
                     if( $countinterv=== 0){
@@ -837,23 +343,22 @@ function card (){
                     echo'<button type="submit" class="button" name="demande">+ Demande </button>';
                 }?>
             </a>
-              
-            
+
+
             </strong>
         </div>
       </div>
       <div class="project-card">
           <?php
-          $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
-          $query = $pdo->prepare("SELECT * FROM 3f WHERE active = 0"  );
+          $query = $pdo->prepare("SELECT * FROM BlablaMat WHERE active = 0 AND logiciels='3f'"  );
           $query->execute();
           $count = $query->rowCount(); ?>
         <div class="project-image">
-        <img class="img_log" src="unnamed (3).png"alt="Placeholder image">
+        <img class="img_log" src="/pictures/unnamed (3).png"alt="Placeholder image">
         </div>
         <div class="project-info">
             <strong class="project-title">
-            <a href="3f.php">
+            <a class="a_filtrer"  href="BlablaMat.php?logiciel=3f">
                 <?php
                 if(isset ($privilegecy['usertype'])){
                     if( $count === 0){
@@ -874,20 +379,19 @@ function card (){
             </strong>
         </div>
       </div>
-          
+
       <div class="project-card">
           <?php
-          $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
-          $innovidees = $pdo->prepare("SELECT * FROM innovidees WHERE active = 0"  );
+          $innovidees = $pdo->prepare("SELECT * FROM BlablaMat WHERE active = 0 AND logiciels='innovidees'"  );
           $innovidees->execute();
           $countinnovidees=$innovidees->rowCount(); ?>
 
           <div class="project-image">
-      <img class="img_log" src="unnamed (4).png" alt="Placeholder image">
+      <img class="img_log" src="/pictures/unnamed (4).png" alt="Placeholder image">
       </div>
       <div class="project-info">
           <strong class="project-title">
-          <a href="innovidees.php">
+          <a class="a_filtrer" href="BlablaMat.php?logiciel=innovidees">
               <?php
               if(isset ($privilegecy['usertype'])){
                   if( $countinnovidees === 0){
@@ -907,23 +411,22 @@ function card (){
                   echo'<button type="submit" class="button" name="demande">+ Demande </button>';
               }?>
           </a>
-            
+
           </strong>
       </div>
       </div>
-        
+
       <div class="project-card">
           <?php
-          $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
-          $challenges = $pdo->prepare("SELECT * FROM challenges WHERE active = 0"  );
+          $challenges = $pdo->prepare("SELECT * FROM BlablaMat WHERE active = 0 AND logiciels='challenges'"  );
           $challenges->execute();
           $countchallenges=$challenges->rowCount(); ?>
       <div class="project-image">
-      <img class="img_log" src="unnamed (5).png" "alt="Placeholder image">
+      <img class="img_log" src="/pictures/unnamed (5).png" alt="Placeholder image">
       </div>
       <div class="project-info">
           <strong class="project-title">
-          <a href="challenges.php">
+          <a class="a_filtrer"  href="BlablaMat.php?logiciel=challenges">
               <?php
               if(isset ($privilegecy['usertype'])){
                   if(  $countchallenges === 0){
@@ -944,19 +447,19 @@ function card (){
           </strong>
       </div>
       </div>
-        
+
       <div class="project-card">
           <?php
-          $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
-          $diagnostic = $pdo->prepare("SELECT * FROM diagnostic WHERE active = 0"  );
+
+          $diagnostic = $pdo->prepare("SELECT * FROM BlablaMat WHERE active = 0 AND logiciels='diagnostic'"  );
           $diagnostic->execute();
           $countdiagnostic=$diagnostic->rowCount(); ?>
       <div class="project-image">
-      <img class="img_log" src="unnamed (6).png"alt="Placeholder image">
+      <img class="img_log" src="/pictures/unnamed (6).png"alt="Placeholder image">
       </div>
       <div class="project-info">
           <strong class="project-title">
-          <a href="diagnostic.php">
+          <a class="a_filtrer"href="BlablaMat.php?logiciel=diagnostic">
               <?php
               if(isset ($privilegecy['usertype'])){
                   if(  $countdiagnostic=== 0){

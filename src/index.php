@@ -1,11 +1,12 @@
-<?php 
+<?php
+
+$pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
 
 $filter_username=filter_input(INPUT_POST,"username");
 $filter_password=filter_input(INPUT_POST,"password");
 
 if(!empty($filter_username) && !empty( $filter_password) ){
     $password_hach = password_hash ($filter_password,PASSWORD_DEFAULT);
-    $pdo = new PDO("mysql:host=database:3306;dbname=php_db", "root", "password");
     $query = $pdo->prepare("INSERT INTO user (username,password) VALUES ( ?,?)");
     $query->execute(array($filter_username,$password_hach ));
     header("location:login.php");
